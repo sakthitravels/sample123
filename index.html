@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography Shop</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Lightbox Gallery -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #111;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #aaa;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 20px;
+      z-index: 2;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
+
+    .hero-content button {
+      padding: 12px 25px;
+      border: none;
+      background: goldenrod;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+
+    .hero-content button:hover {
+      background: white;
+      color: black;
+    }
+
+   /* Services */
+#services {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+#services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #111;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.1);
+}
+
+.service-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  color: white;
+  text-align: left;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-content {
+  transform: translateY(0);
+}
+
+.service-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.service-content p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #services h2 {
+    font-size: 2rem;
+  }
+  .service-content h3 {
+    font-size: 1.2rem;
+  }
+  .service-content p {
+    font-size: 0.85rem;
+  }
+}
+  
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  padding: 40px 20px;
+}
+:root{
+    --bg:#0b0b0b;
+    --body-dark:#181818;
+    --body-mid:#252525;
+    --body-light:#3a3a3a;
+    --gold:#d4af37;
+    --accent:#0f0f0f;
+    --card-w:360px;
+    --card-h:260px;
+  }
+  *{box-sizing:border-box}
+ 
+
+
+  .camera-wrap{
+    width: min(92vw, 1100px);
+    display:flex;
+    gap:28px;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .camera {
+    width: var(--card-w);
+    height: var(--card-h);
+    border-radius:14px;
+    position:relative;
+    transform-style: preserve-3d;
+    perspective:1200px;
+    transition: transform 900ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .camera:focus{ outline: none; box-shadow:0 12px 40px rgba(0,0,0,.6); }
+
+  .camera-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style: preserve-3d;
+    transition: transform 900ms cubic-bezier(.2,.9,.2,1);
+    border-radius:14px;
+  }
+
+  .body-front{
+    position:absolute;
+    inset:0;
+    border-radius:14px;
+    background: linear-gradient(180deg,var(--body-mid),var(--body-dark));
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.02), 0 20px 40px rgba(0,0,0,.6);
+    transform: translateZ(12px);
+  }
+  .body-front::after{
+    content:"";
+    position:absolute; inset:0; border-radius:14px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0 1px, transparent 1px 6px);
+    mix-blend-mode: overlay;
+    opacity:.06;
+  }
+
+  .prism{
+    position:absolute;
+    top:8px; left:50%;
+    transform: translateX(-50%);
+    width:44%;
+    height:56px;
+    background: linear-gradient(180deg,#141414,#0f0f0f);
+    border-radius:8px;
+    box-shadow: inset 0 -10px 20px rgba(255,255,255,.02);
+    transform-origin:center;
+    z-index:6;
+    translate:30px;
+  }
+
+  .grip{
+    position:absolute;
+    left:-26px; top:34px;
+    width:68px; height:150px;
+    border-radius:14px;
+    background: radial-gradient(circle at 20% 20%, #191919, #111 40%),
+                linear-gradient(90deg, rgba(0,0,0,.6), transparent 40%);
+    box-shadow: inset -3px 0 12px rgba(255,255,255,.02);
+    transform: translateZ(8px);
+  }
+
+  .shutter{
+    position:absolute;
+    right:22px; top:-6px;
+    width:44px; height:18px;
+    border-radius:8px;
+    background:linear-gradient(180deg,#666,#444);
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,.5);
+    transform: translateZ(36px);
+  }
+  .dial{
+    position:absolute;
+    left:14px; top:-2px;
+    width:38px; height:22px; border-radius:6px;
+    background:linear-gradient(180deg,#2b2b2b,#151515);
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,.5);
+    transform: translateZ(36px);
+  }
+
+  .lens-assembly{
+    position:absolute;
+    left:50%; top:56%;
+    transform: translate(-50%,-50%);
+    width: 140px; height:140px;
+    z-index:8;
+    transform-style: preserve-3d;
+    pointer-events: auto;
+  }
+
+  .lens-outer{
+    position:absolute; inset:0;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(circle at 30% 30%, #111, #000 60%);
+    box-shadow: 0 6px 18px rgba(0,0,0,.6), inset 0 6px 18px rgba(255,255,255,.02);
+    border:8px solid rgba(0,0,0,.85);
+    transform: translateZ(40px);
+  }
+
+  .lens-gold{
+    position:absolute; width:92%; height:92%; border-radius:50%;
+    border:6px solid var(--gold);
+    box-shadow: 0 4px 10px rgba(212,175,55,.12);
+    transform: translateZ(48px);
+  }
+
+  .lens-glass{
+    position:absolute;
+    width:80%; height:80%;
+    border-radius:50%;
+    overflow:hidden;
+    transform: translateZ(56px);
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(circle at 30% 30%, rgba(0,0,0,.6), rgba(0,0,0,.9));
+    box-shadow: inset 0 6px 30px rgba(0,0,0,.85);
+  }
+  
+
+  .lens-glass img{
+    width:110%; height:110%;
+    object-fit:cover;
+    border-radius:50%;
+    transition: transform 700ms cubic-bezier(.2,.9,.2,1);
+  }
+
+  .lens-reflect{
+    position:absolute; width:60%; height:60%;
+    top:8%; left:10%;
+    background: radial-gradient(circle at 0% 10%, rgba(255,255,255,.35), rgba(255,255,255,.06) 30%, transparent 60%);
+    mix-blend-mode: screen;
+    transform: translateZ(80px) rotate(-6deg);
+    pointer-events:none;
+  }
+
+  /* screen at back (full back face) */
+.screen-face {
+  position: absolute;
+  inset: 0; /* full size */
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  transform: translateZ(-8px) rotateY(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 4px 18px rgba(0,0,0,.8);
+}
+
+.screen-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 450ms;
+}
+
+  .label{
+    position:absolute; right:18px; top:8px; color:#fff; font-size:12px; font-weight:700; letter-spacing:.6px;
+    text-shadow:0 1px 0 rgba(0,0,0,.6); transform: translateZ(28px);
+  }
+  .led{
+    width:8px; height:8px; border-radius:50%; background:#ff6b6b; position:absolute; right:60px; top:18px; transform: translateZ(30px);
+    box-shadow:0 0 6px rgba(255,107,107,.7);
+  }
+
+  .camera.open{
+    transform: rotateY(12deg) scale(1.06);
+    z-index:20;
+  }
+
+  .camera.open .camera-inner{ transform: rotateY(178deg); }
+
+  .camera.open .lens-glass img{ transform: scale(1.3); }
+  .camera.open .screen-face img{ transform: scale(1); opacity:1; }
+
+  .screen-face img{ transform: scale(.98); opacity:0.0; transition: transform 850ms cubic-bezier(.2,.9,.2,1), opacity 450ms; }
+  .camera.open .screen-face img{ opacity:1; transition-delay:160ms; }
+
+  .camera:focus { outline: 3px solid rgba(212,175,55,.12); }
+
+  @media (max-width:520px){
+    :root{ --card-w: 300px; --card-h:220px; }
+    .lens-assembly{ transform: translate(-50%,-55%) scale(.84); left:48%; top:58%; }
+    .screen-face{ width:132px; height:90px; right:14px; top:18px; }
+    .grip{ right:-22px; width:36px; height:100px; top:34px; }
+  }
+
+    /* Contact */
+    #contact {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+    }
+
+    form button {
+      background: #000;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    form button:hover {
+      background: white;
+      color: #000;
+      border: 1px solid #000;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>Lens Studio</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-overlay">
+      <div class="hero-content" data-aos="fade-up">
+        <h2>Capturing Your Moments</h2>
+        <p>Professional photography services that bring your memories to life. Experience creativity and passion through our lens.</p>
+        <button>Explore Portfolio</button>
+      </div>
+    </div>
+  </section>
+
+<!-- Services -->
+<section id="services" data-aos="fade-up">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-card">
+      <img src="https://picsum.photos/id/1015/600/400" alt="Wedding Photography">
+      <div class="service-content">
+        <h3>Wedding Photography</h3>
+        <p>Capturing your special day with timeless elegance and creativity.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://picsum.photos/id/1027/600/400" alt="Studio Photoshoot">
+      <div class="service-content">
+        <h3>Studio Photoshoot</h3>
+        <p>High-quality portraits with perfect lighting and professional setups.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://picsum.photos/id/1035/600/400" alt="Outdoor Photography">
+      <div class="service-content">
+        <h3>Outdoor Photography</h3>
+        <p>Beautiful shots in natural settings that bring life to your memories.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://picsum.photos/id/1043/600/400" alt="Event Coverage">
+      <div class="service-content">
+        <h3>Event Coverage</h3>
+        <p>From concerts to corporate events, we cover every moment perfectly.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://picsum.photos/id/1050/600/400" alt="Photo Printing & Frames">
+      <div class="service-content">
+        <h3>Photo Printing & Frames</h3>
+        <p>Premium prints and custom frames to preserve your cherished memories.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  
+  <div class="portfolio-grid">
+    <!-- Camera 1 -->
+    <div class="camera" id="camera-1" tabindex="0" aria-label="Camera card. Click to open.">
+      <div class="camera-inner">
+        <div class="body-front"></div>
+        <div class="prism"></div>
+        <div class="grip"></div>
+        <div class="shutter"></div>
+        <div class="dial"></div>
+        <div class="label">PRO DSLR</div>
+        <div class="led"></div>
+
+        <div class="lens-assembly">
+          <div class="lens-outer">
+            <div class="lens-gold"></div>
+            <div class="lens-glass">
+              <img src="https://picsum.photos/id/1021/1200/1200" alt="Project 1" />
+              <div class="lens-reflect"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-face">
+          <img src="https://picsum.photos/id/1021/1600/1200" alt="Project 1 on screen">
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 2 -->
+    <div class="camera" id="camera-2" tabindex="0" aria-label="Camera card. Click to open.">
+      <div class="camera-inner">
+        <div class="body-front"></div>
+        <div class="prism"></div>
+        <div class="grip"></div>
+        <div class="shutter"></div>
+        <div class="dial"></div>
+        <div class="label">PRO DSLR</div>
+        <div class="led"></div>
+
+        <div class="lens-assembly">
+          <div class="lens-outer">
+            <div class="lens-gold"></div>
+            <div class="lens-glass">
+              <img src="https://picsum.photos/id/1035/1200/1200" alt="Project 2" />
+              <div class="lens-reflect"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-face">
+          <img src="https://picsum.photos/id/1035/1600/1200" alt="Project 2 on screen">
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 3 -->
+    <div class="camera" id="camera-3" tabindex="0" aria-label="Camera card. Click to open.">
+      <div class="camera-inner">
+        <div class="body-front"></div>
+        <div class="prism"></div>
+        <div class="grip"></div>
+        <div class="shutter"></div>
+        <div class="dial"></div>
+        <div class="label">PRO DSLR</div>
+        <div class="led"></div>
+
+        <div class="lens-assembly">
+          <div class="lens-outer">
+            <div class="lens-gold"></div>
+            <div class="lens-glass">
+              <img src="https://picsum.photos/id/1043/1200/1200" alt="Project 3" />
+              <div class="lens-reflect"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-face">
+          <img src="https://picsum.photos/id/1043/1600/1200" alt="Project 3 on screen">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Contact -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Lens Studio | Designed by Santhosh</p>
+    <p>
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">WhatsApp</a>
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script>
+    AOS.init({ duration: 1200 });
+(function(){
+  document.querySelectorAll('.camera').forEach(camera => {
+    const lensAssembly = camera.querySelector('.lens-assembly');
+
+    camera.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); camera.click(); }
+    });
+
+    camera.addEventListener('click', ()=>{
+      camera.classList.toggle('open');
+    });
+
+    lensAssembly.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      camera.click();
+    });
+  });
+})();
+
+  </script>
+
+</body>
+</html>
