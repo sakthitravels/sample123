@@ -360,23 +360,123 @@ body.modal-open {
   position: fixed;        /* lock position */
   width: 100%;            /* prevent horizontal shift */
 }
+/* Mobile Responsive Fix */
+@media (max-width: 768px) {
 
+
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    max-width: 100%;
+  }
+
+  .cards {
+    grid-template-columns: 1fr; /* single column */
+  }
+
+  .testimonial-row,
+  .testimonial-row.reverse {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .modal-box {
+    width: 95%;   /* full width */
+    height: auto; /* let content grow */
+    max-height: 90vh;
+  }
+
+  .modal-gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+  }
+
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+    padding: 10px;
+  }
+
+ 
+
+
+  .modal-gallery {
+    grid-template-columns: 1fr; /* single column on very small phones */
+  }
+}
+
+/* Hamburger hidden by default */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+  header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;  /* optional: keep background solid */
+}
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  header nav a {
+    margin: 10px 0;
+    display: block;
+    text-align: left;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
 
   </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header>
-    <div class="logo">📸 Photography</div>
-    <nav>
-      <a href="#hero">Home</a>
-      <a href="#about">About</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">📸 Photography</div>
+  <nav id="nav-menu">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</header>
+
 
   <!-- Hero -->
   <section class="hero" id="hero">
@@ -619,7 +719,10 @@ function unlockScroll() {
     document.getElementById("serviceModal").style.display = "none";
     unlockScroll(); // 🔓 allow background scroll again
   }
-  
+  function toggleMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+
 </script>
 </body>
 </html>
